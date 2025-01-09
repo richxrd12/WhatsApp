@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.whatsapp.Controllers.RegisterController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="750.0" prefWidth="1000.0" style="-fx-background-color: indigo;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.whatsapp.Controllers.RegisterController">
+   <children>
+      <AnchorPane prefHeight="750.0" prefWidth="500.0" style="-fx-background-color: #f1d7ff;">
+         <children>
+            <Label layoutX="55.0" layoutY="261.0" text="Correo">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="56.0" layoutY="365.0" text="Contraseña">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="195.0" layoutY="581.0" mnemonicParsing="false" onAction="#onClickRegister" prefHeight="38.0" prefWidth="88.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: indigo;" text="Registrarse" />
+            <TextField fx:id="correoTextField" layoutX="56.0" layoutY="294.0" prefHeight="25.0" prefWidth="367.0" />
+            <Label fx:id="errorLabel" layoutX="71.0" layoutY="513.0" prefHeight="17.0" prefWidth="335.0" style="-fx-text-fill: #f1d7ff; -fx-alignment: center;" text="El correo ya está usado, ¿quiere iniciar sesión?" />
+            <Label layoutX="100.0" layoutY="656.0" onMouseClicked="#onClickLogin" prefHeight="17.0" prefWidth="293.0" style="-fx-alignment: center;" text="¿Ya tiene cuenta? Inicie sesión" />
+            <Label layoutX="96.0" layoutY="51.0" prefHeight="47.0" prefWidth="270.0" style="-fx-alignment: center; -fx-text-fill: indigo;" text="WhatsApp">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="passwordField" layoutX="55.0" layoutY="399.0" prefHeight="25.0" prefWidth="367.0" />
+            <Label layoutX="56.0" layoutY="162.0" text="Nombre">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nombreTextField" layoutX="55.0" layoutY="198.0" prefHeight="25.0" prefWidth="367.0" />
+            <Label fx:id="successLabel" layoutX="72.0" layoutY="484.0" prefHeight="17.0" prefWidth="335.0" style="-fx-text-fill: #f1d7ff; -fx-alignment: center;" text="Se ha registrado correctamente" />
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>

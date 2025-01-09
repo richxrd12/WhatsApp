@@ -15,6 +15,4 @@ module org.example.whatsapp {
     exports org.example.whatsapp;
     exports org.example.whatsapp.Controllers;
     opens org.example.whatsapp.Controllers to javafx.fxml;
-    exports org.example.whatsapp.Models;
-    opens org.example.whatsapp.Models to javafx.fxml;
 }
