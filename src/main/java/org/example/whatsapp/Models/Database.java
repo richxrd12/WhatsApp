@@ -1,4 +1,4 @@
-package org.example.whatsapp;
+package org.example.whatsapp.Models;
 
 import java.sql.*;
 

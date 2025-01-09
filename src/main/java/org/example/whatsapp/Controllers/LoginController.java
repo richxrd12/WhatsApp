@@ -1,4 +1,4 @@
-package org.example.whatsapp;
+package org.example.whatsapp.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -50,7 +50,7 @@ public class LoginController {
 
     @FXML
     void onClickIniciar(ActionEvent event) {
-        final String FXML = "/org/example/whatsapp/contactos.fxml";
+        final String FXML = "/org/example/whatsapp/ContactosView.fxml";
 
         try {
             FXMLLoader ventanaPrincipal = new FXMLLoader(getClass().getResource(FXML));
