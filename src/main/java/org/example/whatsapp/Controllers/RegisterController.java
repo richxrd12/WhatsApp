@@ -116,10 +116,10 @@ public class RegisterController {
             String respuesta = (String) entrada.readObject();
 
             if (respuesta.equals("true")){
-                System.out.println("Se ha logeado correctamente");
+                System.out.println("Se ha registrado correctamente");
                 return true;
             } else{
-                System.out.println("No se ha podido logear");
+                System.out.println("No se ha podido registrar");
                 return false;
             }
         } catch (Exception e){
