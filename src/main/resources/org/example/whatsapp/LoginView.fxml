@@ -13,7 +13,7 @@
   <padding>
     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
   </padding>
-    <AnchorPane fx:id="errorLabel" prefHeight="520.0" prefWidth="507.0" style="-fx-background-color: #f1d7ff;">
+    <AnchorPane prefHeight="520.0" prefWidth="507.0" style="-fx-background-color: #f1d7ff;">
         <Label layoutX="59.0" layoutY="201.0" text="Usuario">
            <font>
                <Font name="Times New Roman" size="18.0" />
@@ -24,11 +24,11 @@
                <Font name="Times New Roman" size="18.0" />
            </font>
         </Label>
-        <Button fx:id="buttonIniciar" layoutX="140.0" layoutY="384.0" mnemonicParsing="false" onAction="#onClickIniciar" prefHeight="38.0" prefWidth="88.0" text="Iniciar" />
-        <Button fx:id="buttonBorrar" layoutX="254.0" layoutY="384.0" mnemonicParsing="false" onAction="#onClickBorrar" prefHeight="38.0" prefWidth="88.0" text="Borrar todo" />
+        <Button layoutX="140.0" layoutY="384.0" mnemonicParsing="false" onAction="#onClickLogin" prefHeight="38.0" prefWidth="88.0" text="Iniciar" />
+        <Button layoutX="254.0" layoutY="384.0" mnemonicParsing="false" onAction="#onClickBorrar" prefHeight="38.0" prefWidth="88.0" text="Borrar todo" />
         <TextField fx:id="textFieldUsuario" layoutX="59.0" layoutY="229.0" prefHeight="25.0" prefWidth="367.0" />
         <TextField fx:id="textFieldPass" layoutX="59.0" layoutY="303.0" prefHeight="25.0" prefWidth="367.0" />
-        <Label layoutX="165.0" layoutY="342.0" prefHeight="17.0" prefWidth="179.0" text="Usuario o contraseña incorrectos" visible="false" />
+        <Label fx:id="errorLabel" layoutX="165.0" layoutY="342.0" prefHeight="17.0" prefWidth="179.0" text="Usuario o contraseña incorrectos" visible="false" />
       <ImageView fx:id="imagenLogo" fitHeight="124.0" fitWidth="367.0" layoutX="60.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
     </AnchorPane>
 </VBox>
