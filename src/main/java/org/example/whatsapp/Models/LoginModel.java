@@ -37,7 +37,6 @@ public class LoginModel {
                 endConnection();
                 return true;
             }else{
-                System.out.println("No se ha encontrado el usuario");
                 endConnection();
                 return false;
             }

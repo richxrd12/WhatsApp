@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.whatsapp.Models.LoginModel;
 
@@ -28,12 +29,6 @@ public class LoginController {
     private TextField textFieldUsuario;
 
     @FXML
-    void onClickBorrar(ActionEvent event) {
-        textFieldUsuario.setText("");
-        textFieldPass.setText("");
-    }
-
-    @FXML
     public void onClickLogin(ActionEvent event) {
         String correo = textFieldUsuario.getText();
         String password = textFieldPass.getText();
@@ -49,6 +44,29 @@ public class LoginController {
         }
     }
 
+    @FXML
+    public void onClickRegister(MouseEvent event) {
+        final String FXML = "/org/example/whatsapp/RegisterView.fxml";
+
+        try {
+            FXMLLoader ventanaPrincipal = new FXMLLoader(getClass().getResource(FXML));
+            Parent root = ventanaPrincipal.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            Scene scene =  new Scene(root);
+            stage.setScene(scene);
+
+            stage.setHeight(500);
+            stage.setWidth(500);
+
+            stage.centerOnScreen();
+            stage.show();
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
     public void goHome(ActionEvent event) {
         final String FXML = "/org/example/whatsapp/ContactosView.fxml";
 
@@ -60,8 +78,8 @@ public class LoginController {
             Scene scene =  new Scene(root);
             stage.setScene(scene);
 
-            stage.setHeight(800);
-            stage.setWidth(1213);
+            stage.setHeight(500);
+            stage.setWidth(500);
 
             stage.centerOnScreen();
             stage.show();
@@ -72,6 +90,7 @@ public class LoginController {
     }
 
     public void failedLogin(){
+        errorLabel.setVisible(true);
         errorLabel.setText("Correo o contraseña incorrecto, inténtelo de nuevo.");
         errorLabel.setStyle("-fx-text-fill: red");
     }
