@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import org.example.whatsapp.Models.LoginModel;
 
 public class LoginController {
-    
+
     @FXML
     private ImageView imagenLogo;
 
