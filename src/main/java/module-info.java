@@ -9,7 +9,7 @@ module org.example.whatsapp {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
-    requires java.sql;
+    requires com.google.gson;
 
     opens org.example.whatsapp to javafx.fxml;
     exports org.example.whatsapp;

@@ -33,6 +33,12 @@ public class LoginController {
     @FXML
     private PasswordField passField;
 
+    private Socket socket;
+
+    public void setSocket(Socket socket){
+        this.socket = socket;
+    }
+
     @FXML
     public void onClickLogin(ActionEvent event) {
         String correo = correoTextField.getText();
@@ -83,6 +89,7 @@ public class LoginController {
 
             ContactosController controller = ventanaPrincipal.getController();
             controller.setStage(stage);
+            controller.setSocket(socket);
 
             stage.setHeight(500);
             stage.setWidth(500);
@@ -99,7 +106,8 @@ public class LoginController {
         final String HOST = "10.11.1.201";
         final int PORT = 5000;
 
-        try (Socket socket = new Socket(HOST, PORT)){
+        try {
+            setSocket(new Socket(HOST, PORT));
             //Ponemos los datos en un Map
             Map<String, String> datosLogin = new HashMap<>();
             datosLogin.put("estado", "login");
