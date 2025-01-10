@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.example.whatsapp.Objects.Conexion;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -33,11 +34,6 @@ public class LoginController {
     @FXML
     private PasswordField passField;
 
-    private Socket socket;
-
-    public void setSocket(Socket socket){
-        this.socket = socket;
-    }
 
     @FXML
     public void onClickLogin(ActionEvent event) {
@@ -89,7 +85,6 @@ public class LoginController {
 
             ContactosController controller = ventanaPrincipal.getController();
             controller.setStage(stage);
-            controller.setSocket(socket);
 
             stage.setHeight(500);
             stage.setWidth(500);
@@ -107,34 +102,37 @@ public class LoginController {
         final int PORT = 5000;
 
         try {
-            setSocket(new Socket(HOST, PORT));
-            //Ponemos los datos en un Map
+            // Conectar solo si no está conectado
+            Conexion.establecerConexion(HOST, PORT);
+            ObjectInputStream entrada = Conexion.getEntrada();
+            ObjectOutputStream salida = Conexion.getSalida();
+
+            // Crear datos para login
             Map<String, String> datosLogin = new HashMap<>();
-            datosLogin.put("estado", "login");
+            datosLogin.put("peticion", "login");
             datosLogin.put("correo", correo);
             datosLogin.put("password", pass);
 
-            ObjectOutputStream salida = new ObjectOutputStream(socket.getOutputStream());
             salida.writeObject(datosLogin);
             salida.flush();
 
-            //Esperamos la respuesta del servidor
-            ObjectInputStream entrada = new ObjectInputStream(socket.getInputStream());
+            // Leer respuesta
             String respuesta = (String) entrada.readObject();
 
-            if (respuesta.equals("true")){
+            if (respuesta.equals("true")) {
                 System.out.println("Se ha logeado correctamente");
                 return true;
-            } else{
+            } else {
                 System.out.println("No se ha podido logear");
                 return false;
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
 
         return false;
     }
+
 
     public void failedLogin(){
         errorLabel.setVisible(true);

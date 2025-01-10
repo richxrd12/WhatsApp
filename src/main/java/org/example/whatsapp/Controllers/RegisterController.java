@@ -102,7 +102,7 @@ public class RegisterController {
         try (Socket socket = new Socket(HOST, PORT)){
             //Ponemos los datos en un Map
             Map<String, String> datosLogin = new HashMap<>();
-            datosLogin.put("estado", "register");
+            datosLogin.put("peticion", "register");
             datosLogin.put("nombre", nombre);
             datosLogin.put("correo", correo);
             datosLogin.put("password", password);
