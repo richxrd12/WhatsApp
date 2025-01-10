@@ -93,7 +93,7 @@ public class LoginController {
     }
 
     public boolean loginServidor(String correo, String pass){
-        final String HOST = "localhost";
+        final String HOST = "10.11.1.201";
         final int PORT = 5000;
 
         try (Socket socket = new Socket(HOST, PORT)){

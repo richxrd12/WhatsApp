@@ -96,7 +96,7 @@ public class RegisterController {
     }
 
     public boolean registerServer(String nombre, String correo, String password){
-        final String HOST = "localhost";
+        final String HOST = "10.11.1.201";
         final int PORT = 5000;
 
         try (Socket socket = new Socket(HOST, PORT)){
