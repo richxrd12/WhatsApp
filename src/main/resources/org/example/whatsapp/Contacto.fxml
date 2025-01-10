@@ -2,17 +2,16 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="50.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.whatsapp.Controllers.Contacto">
+<?import javafx.scene.layout.HBox?>
+<HBox prefHeight="50.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.whatsapp.Controllers.TarjetaContactoController">
    <children>
-      <ImageView fitHeight="32.0" fitWidth="33.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="56.0" layoutY="6.0" prefHeight="23.0" prefWidth="170.0" style="-fx-border-color: a87bc7;" text="Label">
+      <ImageView fx:id="imageView" fitHeight="32.0" fitWidth="33.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="nombreLabel" layoutX="56.0" layoutY="6.0" prefHeight="23.0" prefWidth="170.0" style="-fx-border-color: a87bc7;" text="Nombre">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
    </children>
-</AnchorPane>
+</HBox>

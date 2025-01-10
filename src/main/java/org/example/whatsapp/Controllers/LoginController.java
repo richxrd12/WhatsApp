@@ -81,6 +81,9 @@ public class LoginController {
             Scene scene =  new Scene(root);
             stage.setScene(scene);
 
+            ContactosController controller = ventanaPrincipal.getController();
+            controller.setStage(stage);
+
             stage.setHeight(500);
             stage.setWidth(500);
 

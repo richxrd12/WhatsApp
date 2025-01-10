@@ -8,6 +8,14 @@ public class Mensaje {
     private String mensaje;
     private String fecha;
 
+    public Mensaje(int id, Usuario remitente, Usuario destinatario, String mensaje, String fecha) {
+        this.id = id;
+        this.remitente = remitente;
+        this.destinatario = destinatario;
+        this.mensaje = mensaje;
+        this.fecha = fecha;
+    }
+
     public int getId() {
         return id;
     }
