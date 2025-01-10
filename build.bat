@@ -1,7 +1,7 @@
 @echo off
 if "%1"=="-f" (
 
-    echo Levantando la base de datos...
+    echo Levantando la base de datos por primera vez...
 
     docker build -t mysql-whatsapp .
 
