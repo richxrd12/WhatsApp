@@ -8,6 +8,9 @@ import javafx.scene.image.ImageView;
 public class TarjetaContactoController {
 
     @FXML
+    private Label estadoLabel;
+
+    @FXML
     private ImageView imageView;
 
     @FXML
@@ -19,3 +22,7 @@ public class TarjetaContactoController {
 
     }
 }
+
+
+
+

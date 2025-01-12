@@ -2,16 +2,26 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.layout.HBox?>
 <HBox prefHeight="50.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.whatsapp.Controllers.TarjetaContactoController">
    <children>
-      <ImageView fx:id="imageView" fitHeight="32.0" fitWidth="33.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="nombreLabel" layoutX="56.0" layoutY="6.0" prefHeight="23.0" prefWidth="170.0" style="-fx-border-color: a87bc7;" text="Nombre">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
+      <AnchorPane prefHeight="50.0" prefWidth="512.0" style="-fx-background-color: #1F1F1F;">
+         <children>
+            <Label fx:id="nombreLabel" layoutX="80.0" layoutY="4.0" prefHeight="15.0" prefWidth="170.0" text="Nombre" textFill="#aea7a7">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imageView" fitHeight="38.0" fitWidth="48.0" layoutX="14.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="estadoLabel" layoutX="80.0" layoutY="28.0" prefHeight="17.0" prefWidth="361.0" text="Estado de prueba para que a Richard no le de toc" textFill="#aea7a7">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </HBox>
