@@ -32,23 +32,12 @@ public class ContactosController {
 
     public void setStage(Stage stage) {
         this.stage = stage;
-
-        // Configurar el título del Stage (opcional, ya que la escena se configura desde la clase principal)
-        stage.setTitle("Lista de Contactos");
     }
 
     @FXML
     public void initialize() {
         //Hacer la petición de Usuarios
         ObservableList<Usuario> contactos = pedirLista();
-
-        // Crear lista de contactos
-//        ObservableList<Usuario> contactos = FXCollections.observableArrayList(
-//                new Usuario(1, "Juan Pérez", "Disponible", "https://via.placeholder.com/50"),
-//                new Usuario(2, "Ana López", "Ocupado", "https://via.placeholder.com/50"),
-//                new Usuario(3, "Carlos Gómez", "En una llamada", "https://via.placeholder.com/50")
-//        );
-
 
         listView.setItems(contactos);
         listView.setCellFactory(lv -> new ListCell<>() {
@@ -66,7 +55,7 @@ public class ContactosController {
 
                         // Obtener el controlador de la tarjeta
                         TarjetaContactoController controller = loader.getController();
-                        controller.setContacto(usuario.getNombre(), "", "");
+                        controller.setContacto(usuario.getNombre(), usuario.getEstado(), "");
 
                         // Establecer la tarjeta como gráfico de la celda
                         setGraphic(root);

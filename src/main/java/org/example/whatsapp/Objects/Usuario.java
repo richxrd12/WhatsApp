@@ -3,6 +3,7 @@ package org.example.whatsapp.Objects;
 public class Usuario {
     private int id;
     private String nombre;
+    private String estado;
     private String correo;
     private String password;
 
@@ -10,7 +11,7 @@ public class Usuario {
 
     }
 
-    public Usuario(int id, String nombre, String correo, String password) {
+    public Usuario(int id, String nombre, String estado, String correo, String password) {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
@@ -31,6 +32,14 @@ public class Usuario {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getCorreo() {

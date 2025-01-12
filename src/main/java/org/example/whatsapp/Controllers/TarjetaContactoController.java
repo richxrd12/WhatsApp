@@ -18,7 +18,10 @@ public class TarjetaContactoController {
 
     public void setContacto(String nombre, String estado, String fotoUrl) {
         this.nombreLabel.setText(nombre);
-        this.imageView.setImage(new Image(""));
+        this.estadoLabel.setText(estado);
+
+        String imagePath = "C:\\Users\\richa\\Desktop\\Clases\\DAD\\WhatsApp\\src\\main\\resources\\org\\example\\whatsapp\\img\\hasbulla.jpg";
+        this.imageView.setImage(new Image("file:///" + imagePath.replace("\\", "/")));
 
     }
 }

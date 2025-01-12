@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -31,6 +32,9 @@ public class RegisterController {
 
     @FXML
     private TextField nombreTextField;
+
+    @FXML
+    private TextArea estadoTextArea;
 
     @FXML
     private PasswordField passwordField;
@@ -61,10 +65,11 @@ public class RegisterController {
     @FXML
     void onClickRegister(ActionEvent event) {
         String nombre = nombreTextField.getText();
+        String estado = estadoTextArea.getText();
         String correo = correoTextField.getText();
         String password = passwordField.getText();
 
-        boolean registerSuccess = registerServer(nombre, correo, password);
+        boolean registerSuccess = registerServer(nombre, estado, correo, password);
 
         if (registerSuccess) {
             succcessRegister();
@@ -96,19 +101,21 @@ public class RegisterController {
         }
     }
 
-    public boolean registerServer(String nombre, String correo, String password){
+    public boolean registerServer(String nombre, String estado, String correo, String password){
         try {
             ObjectInputStream entrada = Conexion.getEntrada();
             ObjectOutputStream salida = Conexion.getSalida();
 
             //Ponemos los datos en un Map
-            Map<String, String> datosLogin = new HashMap<>();
-            datosLogin.put("peticion", "register");
-            datosLogin.put("nombre", nombre);
-            datosLogin.put("correo", correo);
-            datosLogin.put("password", password);
+            Map<String, String> datosRegister = new HashMap<>();
 
-            salida.writeObject(datosLogin);
+            datosRegister.put("peticion", "register");
+            datosRegister.put("nombre", nombre);
+            datosRegister.put("estado", estado);
+            datosRegister.put("correo", correo);
+            datosRegister.put("password", password);
+
+            salida.writeObject(datosRegister);
             salida.flush();
 
             //Esperamos la respuesta del servidor
