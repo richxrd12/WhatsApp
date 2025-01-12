@@ -34,6 +34,8 @@ public class ContactosController {
     @FXML
     private ListView<Usuario> listView;
 
+    private int idCliente;
+
     public void setStage(Stage stage) {
         this.stage = stage;
     }
@@ -65,6 +67,7 @@ public class ContactosController {
                         // Obtener el controlador de la tarjeta
                         TarjetaContactoController controller = loader.getController();
                         controller.setContacto(usuario.getId(), usuario.getNombre(), usuario.getEstado(), "");
+                        controller.setIdCliente(getIdCliente());
 
                         // Establecer la tarjeta como gráfico de la celda
                         setGraphic(root);
@@ -106,9 +109,16 @@ public class ContactosController {
 
         } catch (Exception e) {
             System.out.println(e);
-            System.out.println("Da error aquí");
             return null;
         }
 
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 }

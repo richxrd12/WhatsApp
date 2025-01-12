@@ -24,6 +24,8 @@ public class TarjetaContactoController {
 
     private int id;
 
+    private int idCliente;
+
     public void setContacto(int id, String nombre, String estado, String fotoUrl) {
         this.id = id;
         this.nombreLabel.setText(nombre);
@@ -49,6 +51,7 @@ public class TarjetaContactoController {
             ChatController controller = ventanaPrincipal.getController();
             controller.setNombreLabel(nombreLabel.getText());
             controller.setContactId(id);
+            controller.setIdCliente(getIdCliente());
 
             stage.setHeight(840);
             stage.setWidth(610);
@@ -61,6 +64,13 @@ public class TarjetaContactoController {
         }
     }
 
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
 }
 
 

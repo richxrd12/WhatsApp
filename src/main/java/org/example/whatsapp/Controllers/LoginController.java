@@ -34,6 +34,7 @@ public class LoginController {
     @FXML
     private PasswordField passField;
 
+    private int idCliente;
 
     @FXML
     public void onClickLogin(ActionEvent event) {
@@ -85,6 +86,7 @@ public class LoginController {
 
             ContactosController controller = ventanaPrincipal.getController();
             controller.setStage(stage);
+            controller.setIdCliente(getIdCliente());
 
             stage.setHeight(855);
             stage.setWidth(500);
@@ -113,10 +115,13 @@ public class LoginController {
             salida.flush();
 
             // Leer respuesta
-            String respuesta = (String) entrada.readObject();
+            String idString = (String) entrada.readObject();
+            System.out.println(idString);
+            int id = Integer.parseInt(idString);
 
-            if (respuesta.equals("true")) {
+            if (id != 0) {
                 System.out.println("Se ha logeado correctamente");
+                setIdCliente(id);
                 return true;
             } else {
                 System.out.println("No se ha podido logear");
@@ -136,4 +141,12 @@ public class LoginController {
         errorLabel.setStyle("-fx-text-fill: red");
     }
 
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
 }
