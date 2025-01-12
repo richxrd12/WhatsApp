@@ -1,29 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="615.0" prefWidth="345.0" style="-fx-border-color: a87bc7; -fx-background-color: #1F1F1F;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.whatsapp.Controllers.ContactosController">
+<AnchorPane prefHeight="625.0" prefWidth="350.0" style="-fx-border-color: a87bc7;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.whatsapp.Controllers.ContactosController">
    <children>
-      <AnchorPane prefHeight="64.0" prefWidth="500.0" style="-fx-background-color: a87bc7;">
+      <AnchorPane prefHeight="60.0" prefWidth="500.0" style="-fx-background-color: a87bc7;">
          <children>
             <Label layoutX="77.0" layoutY="7.0" text="CONTACTOS" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="77.0" layoutY="33.0" text="Nº contactos" textFill="WHITE" />
+            <Label fx:id="contactosLabel" layoutX="77.0" layoutY="33.0" text="Nº contactos" textFill="WHITE" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="64.0" prefHeight="556.0" prefWidth="500.0" style="-fx-background-color: white;">
+      <AnchorPane layoutY="64.0" prefHeight="765.0" prefWidth="500.0" style="-fx-background-color: white;">
          <children>
-            <Button fx:id="buttonAñadir" layoutX="362.0" layoutY="505.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="96.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: a87bc7;" text="Añadir" />
-            <Button fx:id="buttonBorrar" layoutX="202.0" layoutY="505.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="96.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: a87bc7;" text="Borrar" />
-            <Button fx:id="buttonSelect" layoutX="40.0" layoutY="505.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="96.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: a87bc7;" text="Seleccionar" />
-            <ListView fx:id="listView" prefHeight="502.0" prefWidth="500.0" />
+            <ListView fx:id="listView" layoutY="-8.0" prefHeight="775.0" prefWidth="500.0" />
          </children>
       </AnchorPane>
    </children>

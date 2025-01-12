@@ -9,29 +9,30 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="615.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.whatsapp.Controllers.ChatController">
+<AnchorPane prefHeight="842.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.whatsapp.Controllers.ChatController">
    <children>
-      <AnchorPane prefHeight="51.0" prefWidth="500.0" style="-fx-background-color: a87bc7;">
+      <AnchorPane prefHeight="51.0" prefWidth="607.0" style="-fx-background-color: a87bc7;">
          <children>
-            <Label layoutX="83.0" layoutY="12.0" text="CONTACTO" textFill="WHITE">
+            <Label fx:id="nombreLabel" layoutX="83.0" layoutY="12.0" prefHeight="28.0" prefWidth="202.0" text="CONTACTO" textFill="WHITE">
                <font>
                   <Font name="Times New Roman" size="24.0" />
                </font>
             </Label>
-            <ImageView fx:id="imagenChat" fitHeight="39.0" fitWidth="39.0" layoutX="23.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="usuarioImage" fitHeight="39.0" fitWidth="39.0" layoutX="23.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
-      <TextField fx:id="textFieldChat" layoutX="24.0" layoutY="547.0" prefHeight="39.0" prefWidth="415.0" style="-fx-border-color: a87bc7; -fx-border-radius: 15;" />
-      <Button fx:id="botonChat" layoutX="447.0" layoutY="547.0" mnemonicParsing="false" onAction="#onClickEnviarMensaje" prefHeight="39.0" prefWidth="39.0" style="-fx-background-color: white; -fx-border-color: a87bc7; -fx-border-radius: 10;">
+      <TextField fx:id="chatTextField" layoutX="28.0" layoutY="772.0" prefHeight="40.0" prefWidth="475.0" style="-fx-border-color: a87bc7; -fx-border-radius: 15; -fx-background-radius: 15;" />
+      <Button layoutX="525.0" layoutY="772.0" mnemonicParsing="false" onAction="#onClickEnviarMensaje" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: white; -fx-border-color: a87bc7; -fx-border-radius: 10; -fx-background-radius: 10;">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/enviar.png" />
-               </image></ImageView>
+               </image>
+            </ImageView>
          </graphic></Button>
       <AnchorPane layoutY="51.0" prefHeight="486.0" prefWidth="500.0">
          <children>
-            <ListView fx:id="listViewChat" prefHeight="492.0" prefWidth="500.0" />
+            <ListView fx:id="chatListView" prefHeight="696.0" prefWidth="607.0" />
          </children></AnchorPane>
    </children>
 </AnchorPane>

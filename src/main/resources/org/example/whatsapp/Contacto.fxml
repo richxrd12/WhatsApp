@@ -8,7 +8,7 @@
 
 <HBox prefHeight="50.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.whatsapp.Controllers.TarjetaContactoController">
    <children>
-      <AnchorPane prefHeight="50.0" prefWidth="512.0">
+      <AnchorPane onMouseClicked="#onClickGoChat" prefHeight="50.0" prefWidth="512.0">
          <children>
             <Label fx:id="nombreLabel" layoutX="80.0" layoutY="4.0" prefHeight="15.0" prefWidth="170.0" text="Nombre">
                <font>

@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
@@ -28,6 +29,9 @@ public class ContactosController {
     private Stage stage;
 
     @FXML
+    private Label contactosLabel;
+
+    @FXML
     private ListView<Usuario> listView;
 
     public void setStage(Stage stage) {
@@ -38,6 +42,11 @@ public class ContactosController {
     public void initialize() {
         //Hacer la petición de Usuarios
         ObservableList<Usuario> contactos = pedirLista();
+
+        //Para poner el número de contactos
+        String contactosText = contactosLabel.getText();
+        contactosText = contactosText + " " + contactos.size();
+        contactosLabel.setText(contactosText);
 
         listView.setItems(contactos);
         listView.setCellFactory(lv -> new ListCell<>() {
@@ -55,7 +64,7 @@ public class ContactosController {
 
                         // Obtener el controlador de la tarjeta
                         TarjetaContactoController controller = loader.getController();
-                        controller.setContacto(usuario.getNombre(), usuario.getEstado(), "");
+                        controller.setContacto(usuario.getId(), usuario.getNombre(), usuario.getEstado(), "");
 
                         // Establecer la tarjeta como gráfico de la celda
                         setGraphic(root);

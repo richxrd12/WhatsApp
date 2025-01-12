@@ -43,7 +43,7 @@ public class LoginController {
         boolean loginSucces = loginServidor(correo, password);
 
         if (loginSucces){
-            goHome(event);
+            goContactos(event);
         }else{
             failedLogin();
         }
@@ -72,7 +72,7 @@ public class LoginController {
         }
     }
 
-    public void goHome(ActionEvent event) {
+    public void goContactos(ActionEvent event) {
         final String FXML = "/org/example/whatsapp/ContactosView.fxml";
 
         try {
@@ -86,7 +86,7 @@ public class LoginController {
             ContactosController controller = ventanaPrincipal.getController();
             controller.setStage(stage);
 
-            stage.setHeight(500);
+            stage.setHeight(855);
             stage.setWidth(500);
 
             stage.centerOnScreen();

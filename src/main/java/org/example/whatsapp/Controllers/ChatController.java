@@ -2,7 +2,7 @@ package org.example.whatsapp.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -10,20 +10,36 @@ import javafx.scene.image.ImageView;
 public class ChatController {
 
     @FXML
-    private Button botonChat;
+    private ListView<?> chatListView;
 
     @FXML
-    private ImageView imagenChat;
+    private TextField chatTextField;
 
     @FXML
-    private TextField textFieldChat;
+    private Label nombreLabel;
 
     @FXML
-    private ListView<?> listViewChat;
+    private ImageView usuarioImage;
+
+    private int contactId;
+
+    //Aquí poner el método que pide los mensajes al servidor
+    @FXML
+    public void initialize(){
+
+    }
 
     @FXML
     void onClickEnviarMensaje(ActionEvent event) {
 
+    }
+
+    void setNombreLabel(String nombre){
+        nombreLabel.setText(nombre + " " + contactId);
+    }
+
+    void setContactId(int contactId){
+        this.contactId = contactId;
     }
 
 }
