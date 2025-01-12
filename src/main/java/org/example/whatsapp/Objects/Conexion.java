@@ -16,13 +16,20 @@ public class Conexion {
         return socket;
     }
 
-    public static ObjectOutputStream getSalida() {
+    public static synchronized ObjectOutputStream getSalida() throws IOException {
+        if (socket == null || socket.isClosed()) {
+            throw new IOException("El socket está cerrado.");
+        }
         return salida;
     }
 
-    public static ObjectInputStream getEntrada() {
+    public static synchronized ObjectInputStream getEntrada() throws IOException {
+        if (socket == null || socket.isClosed()) {
+            throw new IOException("El socket está cerrado.");
+        }
         return entrada;
     }
+
 
     public static void establecerConexion(String host, int puerto) throws IOException {
         socket = new Socket(host, puerto);

@@ -11,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.example.whatsapp.Objects.Conexion;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -96,10 +97,10 @@ public class RegisterController {
     }
 
     public boolean registerServer(String nombre, String correo, String password){
-        final String HOST = "10.11.1.201";
-        final int PORT = 5000;
+        try {
+            ObjectInputStream entrada = Conexion.getEntrada();
+            ObjectOutputStream salida = Conexion.getSalida();
 
-        try (Socket socket = new Socket(HOST, PORT)){
             //Ponemos los datos en un Map
             Map<String, String> datosLogin = new HashMap<>();
             datosLogin.put("peticion", "register");
@@ -107,12 +108,10 @@ public class RegisterController {
             datosLogin.put("correo", correo);
             datosLogin.put("password", password);
 
-            ObjectOutputStream salida = new ObjectOutputStream(socket.getOutputStream());
             salida.writeObject(datosLogin);
             salida.flush();
 
             //Esperamos la respuesta del servidor
-            ObjectInputStream entrada = new ObjectInputStream(socket.getInputStream());
             String respuesta = (String) entrada.readObject();
 
             if (respuesta.equals("true")){
