@@ -98,12 +98,8 @@ public class LoginController {
     }
 
     public boolean loginServidor(String correo, String pass){
-        final String HOST = "10.11.1.201";
-        final int PORT = 5000;
-
         try {
             // Conectar solo si no está conectado
-            Conexion.establecerConexion(HOST, PORT);
             ObjectInputStream entrada = Conexion.getEntrada();
             ObjectOutputStream salida = Conexion.getSalida();
 

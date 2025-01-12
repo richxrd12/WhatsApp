@@ -1,6 +1,8 @@
 package org.example.whatsapp.Controllers;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,8 +17,10 @@ import org.example.whatsapp.Objects.Usuario;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Type;
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ContactosController {
@@ -92,12 +96,19 @@ public class ContactosController {
             String respuesta = (String) entrada.readObject();
 
             Gson gson = new Gson();
-            ListaUsuarios listaUsuarios = gson.fromJson(respuesta, ListaUsuarios.class);
+            Type type = new TypeToken<ListaUsuarios>() {}.getType();
 
-            return (ObservableList<Usuario>) listaUsuarios.getUsuarios();
+            System.out.println(respuesta);
+
+            ListaUsuarios listaUsuarios = gson.fromJson(respuesta, type);
+
+            ObservableList<Usuario> usuarios = FXCollections.observableArrayList(listaUsuarios.getUsuarios());
+
+            return usuarios;
 
         } catch (Exception e) {
             System.out.println(e);
+            System.out.println("Da error aquí");
             return null;
         }
 

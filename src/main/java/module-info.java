@@ -12,7 +12,11 @@ module org.example.whatsapp {
     requires com.google.gson;
 
     opens org.example.whatsapp to javafx.fxml;
+    opens org.example.whatsapp.Objects to com.google.gson;
+
     exports org.example.whatsapp;
     exports org.example.whatsapp.Controllers;
+    exports org.example.whatsapp.Objects;
+
     opens org.example.whatsapp.Controllers to javafx.fxml;
 }
