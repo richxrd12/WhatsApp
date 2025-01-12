@@ -8,15 +8,15 @@
 
 <HBox prefHeight="50.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.whatsapp.Controllers.TarjetaContactoController">
    <children>
-      <AnchorPane prefHeight="50.0" prefWidth="512.0" style="-fx-background-color: #1F1F1F;">
+      <AnchorPane prefHeight="50.0" prefWidth="512.0">
          <children>
-            <Label fx:id="nombreLabel" layoutX="80.0" layoutY="4.0" prefHeight="15.0" prefWidth="170.0" text="Nombre" textFill="#aea7a7">
+            <Label fx:id="nombreLabel" layoutX="80.0" layoutY="4.0" prefHeight="15.0" prefWidth="170.0" text="Nombre">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
             <ImageView fx:id="imageView" fitHeight="38.0" fitWidth="48.0" layoutX="14.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="estadoLabel" layoutX="80.0" layoutY="28.0" prefHeight="17.0" prefWidth="361.0" text="Estado de prueba para que a Richard no le de toc" textFill="#aea7a7">
+            <Label fx:id="estadoLabel" layoutX="80.0" layoutY="28.0" prefHeight="17.0" prefWidth="361.0" text="Estado de prueba para que a Richard no le de toc" textFill="#6b6b6b">
                <font>
                   <Font size="13.0" />
                </font>

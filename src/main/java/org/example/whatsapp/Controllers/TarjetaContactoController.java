@@ -18,7 +18,7 @@ public class TarjetaContactoController {
 
     public void setContacto(String nombre, String estado, String fotoUrl) {
         this.nombreLabel.setText(nombre);
-        this.imageView.setImage(new Image("file:/C:/Users/2DAM/Desktop/hasbulla.jpg"));
+        this.imageView.setImage(new Image(""));
 
     }
 }
