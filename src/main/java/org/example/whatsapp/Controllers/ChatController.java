@@ -7,6 +7,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import org.example.whatsapp.Objects.Conexion;
+import org.example.whatsapp.Variables.Variables;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -54,23 +55,13 @@ public class ChatController {
         //Ponemos los datos en un Map
         Map<String, String> datosMensajes = new HashMap<>();
         datosMensajes.put("peticion", "peticion-mensajes");
-        datosMensajes.put("idCliente", String.valueOf(getIdCliente()));
-        datosMensajes.put("idContacto", String.valueOf(contactId));
+        datosMensajes.put("idCliente", String.valueOf(Variables.getIdCliente()));
+        datosMensajes.put("idContacto", String.valueOf(Variables.getIdContacto()));
+
+        salida.writeObject(datosMensajes);
     }
 
     void setNombreLabel(String nombre){
-        nombreLabel.setText(nombre + " " + contactId);
-    }
-
-    void setContactId(int contactId){
-        this.contactId = contactId;
-    }
-
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+        nombreLabel.setText(nombre);
     }
 }

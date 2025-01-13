@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.whatsapp.Objects.Conexion;
+import org.example.whatsapp.Variables.Variables;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -86,7 +87,6 @@ public class LoginController {
 
             ContactosController controller = ventanaPrincipal.getController();
             controller.setStage(stage);
-            controller.setIdCliente(getIdCliente());
 
             stage.setHeight(855);
             stage.setWidth(500);
@@ -116,12 +116,11 @@ public class LoginController {
 
             // Leer respuesta
             String idString = (String) entrada.readObject();
-            System.out.println(idString);
             int id = Integer.parseInt(idString);
 
             if (id != 0) {
                 System.out.println("Se ha logeado correctamente");
-                setIdCliente(id);
+                Variables.setIdCliente(id);
                 return true;
             } else {
                 System.out.println("No se ha podido logear");
@@ -130,7 +129,6 @@ public class LoginController {
         } catch (Exception e) {
             System.out.println(e);
         }
-
         return false;
     }
 
@@ -141,12 +139,4 @@ public class LoginController {
         errorLabel.setStyle("-fx-text-fill: red");
     }
 
-
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
 }

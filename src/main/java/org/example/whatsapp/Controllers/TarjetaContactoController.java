@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.example.whatsapp.Variables.Variables;
 
 public class TarjetaContactoController {
 
@@ -23,8 +24,6 @@ public class TarjetaContactoController {
     private Label nombreLabel;
 
     private int id;
-
-    private int idCliente;
 
     public void setContacto(int id, String nombre, String estado, String fotoUrl) {
         this.id = id;
@@ -41,6 +40,8 @@ public class TarjetaContactoController {
         final String FXML = "/org/example/whatsapp/ChatView.fxml";
 
         try {
+            Variables.setIdContacto(getId()); //Setteamos primero el IdContacto
+
             FXMLLoader ventanaPrincipal = new FXMLLoader(getClass().getResource(FXML));
             Parent root = ventanaPrincipal.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -49,9 +50,8 @@ public class TarjetaContactoController {
             stage.setScene(scene);
 
             ChatController controller = ventanaPrincipal.getController();
+
             controller.setNombreLabel(nombreLabel.getText());
-            controller.setContactId(id);
-            controller.setIdCliente(getIdCliente());
 
             stage.setHeight(840);
             stage.setWidth(610);
@@ -64,12 +64,8 @@ public class TarjetaContactoController {
         }
     }
 
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public int getId(){
+        return id;
     }
 }
 

@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import org.example.whatsapp.Objects.Conexion;
 import org.example.whatsapp.Objects.ListaUsuarios;
 import org.example.whatsapp.Objects.Usuario;
+import org.example.whatsapp.Variables.Variables;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -67,7 +68,6 @@ public class ContactosController {
                         // Obtener el controlador de la tarjeta
                         TarjetaContactoController controller = loader.getController();
                         controller.setContacto(usuario.getId(), usuario.getNombre(), usuario.getEstado(), "");
-                        controller.setIdCliente(getIdCliente());
 
                         // Establecer la tarjeta como gráfico de la celda
                         setGraphic(root);
@@ -99,8 +99,6 @@ public class ContactosController {
             Gson gson = new Gson();
             Type type = new TypeToken<ListaUsuarios>() {}.getType();
 
-            System.out.println(respuesta);
-
             ListaUsuarios listaUsuarios = gson.fromJson(respuesta, type);
 
             ObservableList<Usuario> usuarios = FXCollections.observableArrayList(listaUsuarios.getUsuarios());
@@ -112,13 +110,5 @@ public class ContactosController {
             return null;
         }
 
-    }
-
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
     }
 }
