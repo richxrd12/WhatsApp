@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="65.0" prefWidth="295.0" style="-fx-background-color: cccdd1; -fx-background-radius: 14;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.whatsapp.Controllers.ChatRecibidoController">
+   <children>
+      <Label fx:id="chatRecibidoLabel" layoutX="14.0" layoutY="6.0" text="Nombre" textFill="#894bb5">
+         <font>
+            <Font name="Times New Roman" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="mensajeRecibidoLabel" layoutX="14.0" layoutY="23.0" text="Aquí irá el mensaje que hayamos recibido">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="horaRecibidoLabel" layoutX="215.0" layoutY="42.0" text="Hora/fecha">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
