@@ -6,9 +6,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.example.whatsapp.Objects.Conexion;
@@ -20,9 +24,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Type;
-import java.net.Socket;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ContactosController {
@@ -34,8 +36,6 @@ public class ContactosController {
 
     @FXML
     private ListView<Usuario> listView;
-
-    private int idCliente;
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -79,6 +79,29 @@ public class ContactosController {
                 }
             }
         });
+    }
+
+    @FXML
+    void onClickGoLogin(MouseEvent event) {
+        final String FXML = "/org/example/whatsapp/LoginView.fxml";
+
+        try {
+            FXMLLoader login = new FXMLLoader(getClass().getResource(FXML));
+            Parent root = login.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            Scene scene =  new Scene(root);
+            stage.setScene(scene);
+
+            stage.setHeight(750);
+            stage.setWidth(1000);
+
+            stage.centerOnScreen();
+            stage.show();
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     public ObservableList<Usuario> pedirLista(){

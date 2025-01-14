@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -15,6 +17,11 @@
                </font>
             </Label>
             <Label fx:id="contactosLabel" layoutX="77.0" layoutY="33.0" text="Nº contactos" textFill="WHITE" />
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutY="5.0" onMouseClicked="#onClickGoLogin" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/flecha-salir.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane layoutY="64.0" prefHeight="765.0" prefWidth="500.0" style="-fx-background-color: white;">

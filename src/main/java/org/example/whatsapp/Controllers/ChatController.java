@@ -7,12 +7,18 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import org.example.whatsapp.Objects.Conexion;
 import org.example.whatsapp.Objects.Mensaje;
 import org.example.whatsapp.Objects.Usuario;
@@ -27,6 +33,8 @@ import java.util.Map;
 
 public class ChatController {
 
+    private Stage stage;
+
     @FXML
     private ListView<Mensaje> chatListView;
 
@@ -39,11 +47,6 @@ public class ChatController {
     @FXML
     private ImageView usuarioImage;
 
-    private int idCliente;
-
-    private int contactId;
-
-    //Aquí poner el método que pide los mensajes al servidor
     @FXML
     public void initialize(){
         try{
@@ -102,6 +105,42 @@ public class ChatController {
 
     }
 
+    @FXML
+    void onClickGoContactos(MouseEvent event) {
+        final String FXML = "/org/example/whatsapp/ContactosView.fxml";
+
+        try {
+            FXMLLoader loader;
+            Parent root;
+
+            if (Variables.getContactosLoader() == null) {
+                loader = new FXMLLoader(getClass().getResource(FXML));
+                root = loader.load();
+                Variables.setContactosLoader(loader);
+            } else {
+                loader = Variables.getContactosLoader();
+                root = loader.getRoot();
+
+                if (root.getScene() != null) {
+                    root.getScene().setRoot(new StackPane());
+                }
+            }
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+
+            ContactosController controller = loader.getController();
+            controller.setStage(stage);
+
+            stage.setHeight(855);
+            stage.setWidth(500);
+            stage.centerOnScreen();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public ArrayList<Mensaje> pedirMensajes() throws IOException, ClassNotFoundException {
         ObjectInputStream entrada = Conexion.getEntrada();
         ObjectOutputStream salida = Conexion.getSalida();
@@ -126,5 +165,13 @@ public class ChatController {
 
     void setNombreLabel(String nombre){
         nombreLabel.setText(nombre);
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 }

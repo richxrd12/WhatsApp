@@ -11,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import org.example.whatsapp.Objects.Conexion;
 import org.example.whatsapp.Variables.Variables;
@@ -74,28 +75,38 @@ public class LoginController {
         }
     }
 
-    public void goContactos(ActionEvent event) {
+    void goContactos(ActionEvent event) {
         final String FXML = "/org/example/whatsapp/ContactosView.fxml";
 
         try {
-            FXMLLoader ventanaPrincipal = new FXMLLoader(getClass().getResource(FXML));
-            Parent root = ventanaPrincipal.load();
+            FXMLLoader loader;
+            Parent root;
+
+            if (Variables.getContactosLoader() == null) {
+                loader = new FXMLLoader(getClass().getResource(FXML));
+                root = loader.load();
+                Variables.setContactosLoader(loader);
+            } else {
+                loader = Variables.getContactosLoader();
+                root = loader.getRoot();
+
+                if (root.getScene() != null) {
+                    root.getScene().setRoot(new StackPane());
+                }
+            }
+
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
 
-            Scene scene =  new Scene(root);
-            stage.setScene(scene);
-
-            ContactosController controller = ventanaPrincipal.getController();
+            ContactosController controller = loader.getController();
             controller.setStage(stage);
 
             stage.setHeight(855);
             stage.setWidth(500);
-
             stage.centerOnScreen();
-            stage.show();
 
-        }catch (Exception e){
-            System.out.println(e);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

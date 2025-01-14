@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import org.example.whatsapp.Variables.Variables;
 
@@ -40,30 +41,28 @@ public class TarjetaContactoController {
         final String FXML = "/org/example/whatsapp/ChatView.fxml";
 
         try {
-            Variables.setIdContacto(getId()); //Setteamos primero el IdContacto
+            Variables.setIdContacto(getId()); // Seteamos primero el IdContacto
             Variables.setNombreContacto(nombreLabel.getText());
 
-            FXMLLoader ventanaPrincipal = new FXMLLoader(getClass().getResource(FXML));
-            Parent root = ventanaPrincipal.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXML));
+            Parent root = loader.load();
+
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
 
-            Scene scene =  new Scene(root);
-            stage.setScene(scene);
-
-            ChatController controller = ventanaPrincipal.getController();
-
+            ChatController controller = loader.getController();
             controller.setNombreLabel(nombreLabel.getText());
 
             stage.setHeight(870);
-            stage.setWidth(625);
-
+            stage.setWidth(610);
             stage.centerOnScreen();
-            stage.show();
 
-        }catch (Exception e){
-            System.out.println(e);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+
+
 
     public int getId(){
         return id;
