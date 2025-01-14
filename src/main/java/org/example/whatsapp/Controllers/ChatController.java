@@ -1,5 +1,7 @@
 package org.example.whatsapp.Controllers;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -7,11 +9,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import org.example.whatsapp.Objects.Conexion;
+import org.example.whatsapp.Objects.Mensaje;
 import org.example.whatsapp.Variables.Variables;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,7 +52,7 @@ public class ChatController {
 
     }
 
-    public void pedirMensajes() throws IOException {
+    public void pedirMensajes() throws IOException, ClassNotFoundException {
         ObjectInputStream entrada = Conexion.getEntrada();
         ObjectOutputStream salida = Conexion.getSalida();
 
@@ -59,6 +63,15 @@ public class ChatController {
         datosMensajes.put("idContacto", String.valueOf(Variables.getIdContacto()));
 
         salida.writeObject(datosMensajes);
+
+        //Esperamos la respuesta del JSON para deserializarlo
+        String jsonMensajes = (String) entrada.readObject();
+
+        Gson gsonMensajes = new Gson();
+        TypeToken<ArrayList<Mensaje>> typeToken = new TypeToken<>(){};
+        ArrayList<Mensaje> mensajes = gsonMensajes.fromJson(jsonMensajes, typeToken);
+
+
     }
 
     void setNombreLabel(String nombre){

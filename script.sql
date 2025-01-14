@@ -42,3 +42,10 @@ INSERT INTO usuarios (nombre, estado, correo, password) VALUES
 ('Ángel', 'Que fue jefa', 'angel@gmail.com', '1234'),
 ('Flavio', 'En verdad me llamo Fabio', 'flavio@gmail.com', '1234'),
 ('Edu', 'Delegado el que tengo aquí colgado', 'edu@gmail.com', '1234');
+
+INSERT INTO mensajes (mensaje, idDestinatario, idRemitente, fecha) VALUES
+('Hola, ¿cómo estás?', 2, 1, '2025-01-14 10:00:00'),
+('¡Hola! Estoy bien, ¿y tú?', 1, 2, '2025-01-14 10:05:00'),
+('Todo bien, gracias. ¿Listo para la reunión?', 2, 1, '2025-01-14 10:10:00'),
+('Sí, estoy revisando los últimos detalles.', 1, 2, '2025-01-14 10:15:00'),
+('Perfecto, nos vemos a las 11.', 2, 1, '2025-01-14 10:20:00');

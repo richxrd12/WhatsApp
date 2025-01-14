@@ -53,8 +53,8 @@ public class TarjetaContactoController {
 
             controller.setNombreLabel(nombreLabel.getText());
 
-            stage.setHeight(840);
-            stage.setWidth(610);
+            stage.setHeight(870);
+            stage.setWidth(625);
 
             stage.centerOnScreen();
             stage.show();

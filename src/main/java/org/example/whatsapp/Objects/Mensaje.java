@@ -3,15 +3,19 @@ package org.example.whatsapp.Objects;
 public class Mensaje {
 
     private int id;
-    private Usuario remitente;
-    private Usuario destinatario;
+    private int idRemitente;
+    private int idDestinatario;
     private String mensaje;
     private String fecha;
 
-    public Mensaje(int id, Usuario remitente, Usuario destinatario, String mensaje, String fecha) {
+    public Mensaje() {
+
+    }
+
+    public Mensaje(int id, int idRemitente, int idDestinatario, String mensaje, String fecha) {
         this.id = id;
-        this.remitente = remitente;
-        this.destinatario = destinatario;
+        this.idRemitente = idRemitente;
+        this.idDestinatario = idDestinatario;
         this.mensaje = mensaje;
         this.fecha = fecha;
     }
@@ -24,20 +28,20 @@ public class Mensaje {
         this.id = id;
     }
 
-    public Usuario getRemitente() {
-        return remitente;
+    public int getRemitente() {
+        return idRemitente;
     }
 
-    public void setRemitente(Usuario remitente) {
-        this.remitente = remitente;
+    public void setRemitente(int remitente) {
+        this.idRemitente = remitente;
     }
 
-    public Usuario getDestinatario() {
-        return destinatario;
+    public int getDestinatario() {
+        return idDestinatario;
     }
 
-    public void setDestinatario(Usuario destinatario) {
-        this.destinatario = destinatario;
+    public void setDestinatario(int destinatario) {
+        this.idDestinatario = destinatario;
     }
 
     public String getMensaje() {
@@ -56,5 +60,15 @@ public class Mensaje {
         this.fecha = fecha;
     }
 
+    @Override
+    public String toString() {
+        return "Mensaje{" +
+                "id=" + id +
+                ", remitente=" + idRemitente +
+                ", destinatario=" + idDestinatario +
+                ", mensaje='" + mensaje + '\'' +
+                ", fecha='" + fecha + '\'' +
+                '}';
+    }
 }
 
