@@ -6,12 +6,17 @@ import javafx.scene.control.Label;
 public class ChatRecibidoController {
 
     @FXML
-    private Label chatRecibidoLabel;
+    private Label fechaLabel;
 
     @FXML
-    private Label horaRecibidoLabel;
+    private Label mensajeLabel;
 
     @FXML
-    private Label mensajeRecibidoLabel;
+    private Label nombreLabel;
 
+    public void setText(String nombre, String mensaje, String fecha){
+        nombreLabel.setText(nombre);
+        fechaLabel.setText(fecha);
+        mensajeLabel.setText(mensaje);
+    }
 }

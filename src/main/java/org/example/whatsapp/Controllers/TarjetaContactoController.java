@@ -41,6 +41,7 @@ public class TarjetaContactoController {
 
         try {
             Variables.setIdContacto(getId()); //Setteamos primero el IdContacto
+            Variables.setNombreContacto(nombreLabel.getText());
 
             FXMLLoader ventanaPrincipal = new FXMLLoader(getClass().getResource(FXML));
             Parent root = ventanaPrincipal.load();

@@ -62,7 +62,7 @@ public class ContactosController {
                 } else {
                     try {
                         // Cargar el FXML para cada tarjeta
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/whatsapp/contacto.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/whatsapp/Contacto.fxml"));
                         HBox root = loader.load();
 
                         // Obtener el controlador de la tarjeta

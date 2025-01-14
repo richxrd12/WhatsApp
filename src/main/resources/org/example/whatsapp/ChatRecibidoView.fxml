@@ -2,25 +2,36 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="65.0" prefWidth="295.0" style="-fx-background-color: cccdd1; -fx-background-radius: 14;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.whatsapp.Controllers.ChatRecibidoController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.whatsapp.Controllers.ChatRecibidoController">
    <children>
-      <Label fx:id="chatRecibidoLabel" layoutX="14.0" layoutY="6.0" text="Nombre" textFill="#894bb5">
-         <font>
-            <Font name="Times New Roman" size="17.0" />
-         </font>
-      </Label>
-      <Label fx:id="mensajeRecibidoLabel" layoutX="14.0" layoutY="23.0" text="Aquí irá el mensaje que hayamos recibido">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="horaRecibidoLabel" layoutX="215.0" layoutY="42.0" text="Hora/fecha">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
+      <AnchorPane prefHeight="68.0" prefWidth="602.0">
+         <children>
+            <Polygon fill="#cccdd1" layoutX="84.0" layoutY="1.0" points="-70.0, 3.0, -20.0, 3.0, -20.0, 31.0" stroke="WHITE" strokeType="INSIDE" />
+            <AnchorPane layoutX="53.0" layoutY="5.0" prefHeight="58.0" prefWidth="295.0" style="-fx-background-color: cccdd1; -fx-background-radius: 14;">
+               <children>
+                  <Label fx:id="nombreLabel" layoutX="14.0" layoutY="5.0" text="Nombre" textFill="#894bb5">
+                     <font>
+                        <Font name="Times New Roman" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="mensajeLabel" layoutX="14.0" layoutY="23.0" text="Aquí irá el mensaje que hayamos recibido">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="fechaLabel" layoutX="181.0" layoutY="43.0" text="10/10/2020 15:10:40">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</HBox>
