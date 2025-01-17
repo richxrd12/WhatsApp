@@ -21,12 +21,13 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import org.example.whatsapp.Objects.Conexion;
 import org.example.whatsapp.Objects.Mensaje;
-import org.example.whatsapp.Objects.Usuario;
 import org.example.whatsapp.Variables.Variables;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -56,6 +57,27 @@ public class ChatController {
 
             chatListView.setItems(mensajes);
             chatListView.setCellFactory(lv -> new ListCell<>() {
+                private Node chatRecibidoNode;
+                private Node chatEnviadoNode;
+                private ChatRecibidoController chatRecibidoController;
+                private ChatEnviadoController chatEnviadoController;
+
+                {
+                    try {
+                        FXMLLoader chatRecibidoLoader = new FXMLLoader(getClass()
+                                .getResource("/org/example/whatsapp/ChatRecibidoView.fxml"));
+                        chatRecibidoNode = chatRecibidoLoader.load();
+                        chatRecibidoController = chatRecibidoLoader.getController();
+
+                        FXMLLoader chatEnviadoLoader = new FXMLLoader(getClass()
+                                .getResource("/org/example/whatsapp/ChatEnviadoView.fxml"));
+                        chatEnviadoNode = chatEnviadoLoader.load();
+                        chatEnviadoController = chatEnviadoLoader.getController();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
                 @Override
                 protected void updateItem(Mensaje mensaje, boolean empty) {
                     super.updateItem(mensaje, empty);
@@ -63,46 +85,28 @@ public class ChatController {
                         setText(null);
                         setGraphic(null);
                     } else {
-                        try {
-                            // Cargar el FXML para cada tarjeta
-                            FXMLLoader chatRecibido = new FXMLLoader(getClass()
-                                    .getResource("/org/example/whatsapp/ChatRecibidoView.fxml"));
-
-                            FXMLLoader chatEnviado = new FXMLLoader(getClass()
-                                    .getResource("/org/example/whatsapp/ChatEnviadoView.fxml"));
-
-                            if (mensaje.getRemitente() == Variables.getIdCliente()){
-                                HBox chatEnviadoRoot = chatEnviado.load();
-
-                                ChatEnviadoController controller = chatEnviado.getController();
-                                controller.setText(mensaje.getMensaje(), mensaje.getFecha());
-
-                                setGraphic(chatEnviadoRoot);
-                            } else {
-                                HBox chatRecibidoRoot = chatRecibido.load();
-
-                                ChatRecibidoController controller = chatRecibido.getController();
-                                controller.setText(Variables.getNombreContacto(), mensaje.getMensaje(),
-                                        mensaje.getFecha());
-
-                                setGraphic(chatRecibidoRoot);
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                            setText("Error cargando contacto");
-                            setGraphic(null);
+                        if (mensaje.getRemitente() == Variables.getIdCliente()) {
+                            chatEnviadoController.setText(mensaje.getMensaje(), mensaje.getFecha());
+                            setGraphic(chatEnviadoNode);
+                        } else {
+                            chatRecibidoController.setText(Variables.getNombreContacto(), mensaje.getMensaje(), mensaje.getFecha());
+                            setGraphic(chatRecibidoNode);
                         }
                     }
                 }
             });
+
         }catch (Exception e){
             System.out.println(e);
         }
     }
 
     @FXML
-    void onClickEnviarMensaje(ActionEvent event) {
+    void onClickEnviarMensaje(ActionEvent event) throws IOException {
+        String mensaje = chatTextField.getText();
+        mandarMensaje(mensaje);
 
+        initialize();
     }
 
     @FXML
@@ -129,6 +133,8 @@ public class ChatController {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
 
+            chatListView.setItems(null);
+
             ContactosController controller = loader.getController();
             controller.setStage(stage);
 
@@ -153,6 +159,8 @@ public class ChatController {
 
         salida.writeObject(datosMensajes);
 
+        salida.flush();
+
         //Esperamos la respuesta del JSON para deserializarlo
         String jsonMensajes = (String) entrada.readObject();
 
@@ -161,6 +169,25 @@ public class ChatController {
         ArrayList<Mensaje> mensajes = gsonMensajes.fromJson(jsonMensajes, typeToken);
 
         return mensajes;
+    }
+
+    public void mandarMensaje(String mensaje) throws IOException {
+        ObjectInputStream entrada = Conexion.getEntrada();
+        ObjectOutputStream salida = Conexion.getSalida();
+
+        LocalDateTime now = LocalDateTime.now();
+        String fecha = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+        Map<String, String> datosMensajeEnviado = new HashMap<>();
+        datosMensajeEnviado.put("peticion", "envio-mensaje");
+        datosMensajeEnviado.put("mensaje", mensaje);
+        datosMensajeEnviado.put("fecha", fecha);
+
+        salida.writeObject(datosMensajeEnviado);
+
+        salida.flush();
+
+        //Esperamos un JSON
     }
 
     void setNombreLabel(String nombre){
