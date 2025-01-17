@@ -41,7 +41,8 @@ INSERT INTO usuarios (nombre, estado, correo, password) VALUES
 ('Enrique', ':|', 'enrique@gmail.com', '1234'),
 ('Ángel', 'Que fue jefa', 'angel@gmail.com', '1234'),
 ('Flavio', 'En verdad me llamo Fabio', 'flavio@gmail.com', '1234'),
-('Edu', 'Delegado el que tengo aquí colgado', 'edu@gmail.com', '1234');
+('Edu', 'Delegado el que tengo aquí colgado', 'edu@gmail.com', '1234'),
+('Luis', 'Van a suspender todos!!', 'luis@gmail.com', '1234');
 
 INSERT INTO mensajes (mensaje, idDestinatario, idRemitente, fecha) VALUES
 ('Hola, ¿cómo estás?', 2, 1, '2025-01-14 10:00:00'),

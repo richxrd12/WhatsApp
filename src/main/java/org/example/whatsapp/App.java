@@ -11,7 +11,7 @@ import java.io.IOException;
 public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        final String HOST = "localhost";
+        final String HOST = "10.11.1.201";
         final int PORT = 5000;
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LoginView.fxml"));
