@@ -26,7 +26,6 @@ public class ChatHandler implements Runnable{
                         if (mensajeRecibido.equals("mensaje-recibido")) {
                             Platform.runLater(() -> {
                                 try {
-                                    System.out.println("Hola");
                                     controller.initialize(); // Actualiza la interfaz
                                 } catch (Exception e) {
                                     e.printStackTrace();

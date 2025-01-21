@@ -48,6 +48,8 @@ public class ChatController {
     @FXML
     private ImageView usuarioImage;
 
+    Thread listenMessage;
+
     @FXML
     public void initialize(){
         try{
@@ -55,7 +57,8 @@ public class ChatController {
 
             ObservableList<Mensaje> mensajes = FXCollections.observableArrayList(listaMensajes);
 
-            Thread listenMessage = new Thread(new ChatHandler(Conexion.getEntrada(), this));
+            listenMessage = new Thread(new ChatHandler(Conexion.getEntrada(), this));
+            listenMessage.setDaemon(true);
             listenMessage.start();
 
             chatListView.setItems(mensajes);
@@ -149,40 +152,52 @@ public class ChatController {
 
             chatListView.setItems(null);
 
-            ContactosController controller = loader.getController();
-            controller.setStage(stage);
+            listenMessage.interrupt();
 
-            stage.setHeight(855);
-            stage.setWidth(500);
-            stage.centerOnScreen();
+            if (listenMessage.isInterrupted()){
+                ContactosController controller = loader.getController();
+                controller.setStage(stage);
+
+                stage.setHeight(855);
+                stage.setWidth(500);
+                stage.centerOnScreen();
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public ArrayList<Mensaje> pedirMensajes() throws IOException, ClassNotFoundException {
-        ObjectInputStream entrada = Conexion.getEntrada();
-        ObjectOutputStream salida = Conexion.getSalida();
+    public ArrayList<Mensaje> pedirMensajes() {
+        try {
+            ObjectOutputStream salida = Conexion.getSalida();
+            ObjectInputStream entrada = Conexion.getEntrada();
 
-        //Ponemos los datos en un Map
-        Map<String, String> datosMensajes = new HashMap<>();
-        datosMensajes.put("peticion", "peticion-mensajes");
-        datosMensajes.put("idCliente", String.valueOf(Variables.getIdCliente()));
-        datosMensajes.put("idContacto", String.valueOf(Variables.getIdContacto()));
+            salida.reset();
 
-        salida.writeObject(datosMensajes);
+            //Ponemos los datos en un Map
+            Map<String, String> datosMensajes = new HashMap<>();
+            datosMensajes.put("peticion", "peticion-mensajes");
+            datosMensajes.put("idCliente", String.valueOf(Variables.getIdCliente()));
+            datosMensajes.put("idContacto", String.valueOf(Variables.getIdContacto()));
 
-        salida.flush();
+            salida.writeObject(datosMensajes);
 
-        //Esperamos la respuesta del JSON para deserializarlo
-        String jsonMensajes = (String) entrada.readObject();
+            salida.flush();
 
-        Gson gsonMensajes = new Gson();
-        TypeToken<ArrayList<Mensaje>> typeToken = new TypeToken<>(){};
-        ArrayList<Mensaje> mensajes = gsonMensajes.fromJson(jsonMensajes, typeToken);
+            //Esperamos la respuesta del JSON para deserializarlo
+            String jsonMensajes = (String) entrada.readObject();
 
-        return mensajes;
+            Gson gsonMensajes = new Gson();
+            TypeToken<ArrayList<Mensaje>> typeToken = new TypeToken<>() {};
+            ArrayList<Mensaje> mensajes = gsonMensajes.fromJson(jsonMensajes, typeToken);
+
+            return mensajes;
+        } catch (Exception e) {
+            System.out.println("Error al pedir " + e.getMessage());
+            ArrayList<Mensaje> mensajes = new ArrayList<Mensaje>();
+            return mensajes;
+        }
     }
 
     public void mandarMensaje(String mensaje) throws IOException {
