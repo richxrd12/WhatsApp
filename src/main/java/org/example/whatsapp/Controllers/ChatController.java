@@ -57,6 +57,7 @@ public class ChatController {
 
             chatListView.setItems(mensajes);
             chatListView.setCellFactory(lv -> new ListCell<>() {
+
                 private Node chatRecibidoNode;
                 private Node chatEnviadoNode;
                 private ChatRecibidoController chatRecibidoController;
