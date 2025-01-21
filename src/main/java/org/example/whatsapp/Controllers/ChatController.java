@@ -16,9 +16,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import org.example.whatsapp.Objects.ChatHandler;
 import org.example.whatsapp.Objects.Conexion;
 import org.example.whatsapp.Objects.Mensaje;
 import org.example.whatsapp.Variables.Variables;
@@ -54,6 +54,9 @@ public class ChatController {
             ArrayList<Mensaje> listaMensajes = pedirMensajes();
 
             ObservableList<Mensaje> mensajes = FXCollections.observableArrayList(listaMensajes);
+
+            Thread listenMessage = new Thread(new ChatHandler(Conexion.getEntrada(), this));
+            listenMessage.start();
 
             chatListView.setItems(mensajes);
             chatListView.setCellFactory(lv -> new ListCell<>() {
