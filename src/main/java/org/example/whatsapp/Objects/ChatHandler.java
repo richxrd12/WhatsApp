@@ -1,11 +1,8 @@
 package org.example.whatsapp.Objects;
 
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import org.example.whatsapp.Controllers.ChatController;
 import java.io.ObjectInputStream;
-import java.util.ArrayList;
 
 public class ChatHandler implements Runnable{
 
@@ -29,11 +26,10 @@ public class ChatHandler implements Runnable{
                     if (mensajeRecibido.equals("mensaje-recibido")) {
                         Platform.runLater(() -> {
                             try {
-                                ArrayList<Mensaje> nuevosMensajes = controller.pedirMensajes();
-                                ObservableList<Mensaje> mensajes = FXCollections.observableArrayList(nuevosMensajes);
-                                mensajes.setAll(nuevosMensajes);
+                                System.out.println("Hola");
+                                controller.initialize();
                             } catch (Exception e) {
-                                e.printStackTrace();
+                                System.out.println(e);
                             }
                         });
                     }
