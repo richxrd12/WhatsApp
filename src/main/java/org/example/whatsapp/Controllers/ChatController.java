@@ -106,11 +106,21 @@ public class ChatController {
     }
 
     @FXML
-    void onClickEnviarMensaje(ActionEvent event) throws IOException {
-        String mensaje = chatTextField.getText();
-        mandarMensaje(mensaje);
+    void onClickEnviarMensaje(ActionEvent event) throws IOException{
+        String mensajeTexto = chatTextField.getText();
+        if (mensajeTexto.isEmpty()) return;
 
-        initialize();
+        mandarMensaje(mensajeTexto);
+
+        LocalDateTime now = LocalDateTime.now();
+        String fecha = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+        Mensaje mensaje = new Mensaje(0, Variables.getIdCliente(), Variables.getIdContacto(), mensajeTexto, fecha);
+
+        ObservableList<Mensaje> mensajes = chatListView.getItems();
+        mensajes.add(mensaje);
+
+        chatTextField.clear();
     }
 
     @FXML
@@ -190,8 +200,6 @@ public class ChatController {
         salida.writeObject(datosMensajeEnviado);
 
         salida.flush();
-
-        //Esperamos un JSON
     }
 
     void setNombreLabel(String nombre){
