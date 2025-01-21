@@ -18,20 +18,21 @@ public class ChatHandler implements Runnable{
     @Override
     public void run() {
         try {
-            ObjectInputStream entrada = Conexion.getEntrada();
             while (true) {
-                Object respuesta = entrada.readObject();
-                if (respuesta instanceof String) {
-                    String mensajeRecibido = (String) respuesta;
-                    if (mensajeRecibido.equals("mensaje-recibido")) {
-                        Platform.runLater(() -> {
-                            try {
-                                System.out.println("Hola");
-                                controller.initialize();
-                            } catch (Exception e) {
-                                System.out.println(e);
-                            }
-                        });
+                synchronized (objectInputStream) {
+                    Object respuesta = objectInputStream.readObject();
+                    if (respuesta instanceof String) {
+                        String mensajeRecibido = (String) respuesta;
+                        if (mensajeRecibido.equals("mensaje-recibido")) {
+                            Platform.runLater(() -> {
+                                try {
+                                    System.out.println("Hola");
+                                    controller.initialize(); // Actualiza la interfaz
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            });
+                        }
                     }
                 }
             }
