@@ -53,11 +53,19 @@ public class ChatController {
     @FXML
     public void initialize(){
         try{
+            System.out.println("Se empieza a inicializar el Chat");
+
+            //Primero la cerramos por si está abierta y luego la volvemos a abrir
+
+            ObjectInputStream inputStream = Conexion.getEntradaEscucha();
+            String codigo = (String) inputStream.readObject();
+            System.out.println(codigo);
+
             ArrayList<Mensaje> listaMensajes = pedirMensajes();
 
             ObservableList<Mensaje> mensajes = FXCollections.observableArrayList(listaMensajes);
 
-            listenMessage = new Thread(new ChatHandler(Conexion.getEntrada(), this));
+            listenMessage = new Thread(new ChatHandler(Conexion.getEntradaEscucha(), this));
             listenMessage.setDaemon(true);
             listenMessage.start();
 
