@@ -49,14 +49,11 @@ public class ChatController {
     private ImageView usuarioImage;
 
     Thread listenMessage;
-    int contador = 0;
+    private static int contador = 0;
 
     @FXML
     public void initialize(){
         try{
-            System.out.println("Se empieza a inicializar el Chat");
-
-            //Primero la cerramos por si está abierta y luego la volvemos a abrir
 
             if (contador < 1){
                 ObjectInputStream inputStream = Conexion.getEntradaEscucha();
@@ -66,7 +63,6 @@ public class ChatController {
             }
 
             ArrayList<Mensaje> listaMensajes = pedirMensajes();
-
             ObservableList<Mensaje> mensajes = FXCollections.observableArrayList(listaMensajes);
 
             listenMessage = new Thread(new ChatHandler(Conexion.getEntradaEscucha(), this));
