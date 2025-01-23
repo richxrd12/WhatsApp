@@ -13,7 +13,7 @@
    <children>
       <AnchorPane prefHeight="51.0" prefWidth="610.0" style="-fx-background-color: a87bc7;">
          <children>
-            <Label fx:id="nombreLabel" layoutX="128.0" layoutY="12.0" prefHeight="28.0" prefWidth="221.0" text="CONTACTO" textFill="WHITE">
+            <Label fx:id="nombreLabel" layoutX="128.0" layoutY="12.0" prefHeight="28.0" prefWidth="221.0" style="-fx-text-fill: black;" text="CONTACTO" textFill="WHITE">
                <font>
                   <Font name="Times New Roman" size="24.0" />
                </font>
@@ -21,7 +21,7 @@
             <ImageView fx:id="usuarioImage" fitHeight="39.0" fitWidth="39.0" layoutX="64.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
-      <TextField fx:id="chatTextField" layoutX="28.0" layoutY="772.0" prefHeight="40.0" prefWidth="490.0" style="-fx-border-color: a87bc7; -fx-border-radius: 15; -fx-background-radius: 15;" />
+      <TextField fx:id="chatTextField" layoutX="28.0" layoutY="772.0" onKeyPressed="#onKeyEnviar" prefHeight="40.0" prefWidth="490.0" style="-fx-border-color: a87bc7; -fx-border-radius: 15; -fx-background-radius: 15;" />
       <Button layoutX="537.0" layoutY="772.0" mnemonicParsing="false" onAction="#onClickEnviarMensaje" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: white; -fx-border-color: a87bc7; -fx-border-radius: 10; -fx-background-radius: 10;">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">

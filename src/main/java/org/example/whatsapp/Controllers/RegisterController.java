@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.whatsapp.Objects.Conexion;
@@ -28,7 +29,7 @@ public class RegisterController {
     private Label successLabel;
 
     @FXML
-    private TextField correoTextField;
+    private TextField usuarioTextField;
 
     @FXML
     private TextField nombreTextField;
@@ -66,10 +67,10 @@ public class RegisterController {
     void onClickRegister(ActionEvent event) {
         String nombre = nombreTextField.getText();
         String estado = estadoTextArea.getText();
-        String correo = correoTextField.getText();
+        String usuario = usuarioTextField.getText();
         String password = passwordField.getText();
 
-        boolean registerSuccess = registerServer(nombre, estado, correo, password);
+        boolean registerSuccess = registerServer(nombre, estado, usuario, password);
 
         if (registerSuccess) {
             succcessRegister();
@@ -101,7 +102,7 @@ public class RegisterController {
         }
     }
 
-    public boolean registerServer(String nombre, String estado, String correo, String password){
+    public boolean registerServer(String nombre, String estado, String usuario, String password){
         try {
             ObjectInputStream entrada = Conexion.getEntrada();
             ObjectOutputStream salida = Conexion.getSalida();
@@ -112,7 +113,7 @@ public class RegisterController {
             datosRegister.put("peticion", "register");
             datosRegister.put("nombre", nombre);
             datosRegister.put("estado", estado);
-            datosRegister.put("correo", correo);
+            datosRegister.put("usuario", usuario);
             datosRegister.put("password", password);
 
             salida.writeObject(datosRegister);

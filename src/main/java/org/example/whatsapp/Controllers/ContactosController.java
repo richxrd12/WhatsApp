@@ -67,7 +67,8 @@ public class ContactosController {
 
                         // Obtener el controlador de la tarjeta
                         TarjetaContactoController controller = loader.getController();
-                        controller.setContacto(usuario.getId(), usuario.getNombre(), usuario.getEstado(), "");
+                        controller.setContacto(usuario.getId(), usuario.getNombre(), usuario.getEstado(), "",
+                                usuario.isOnline());
 
                         // Establecer la tarjeta como gráfico de la celda
                         setGraphic(root);

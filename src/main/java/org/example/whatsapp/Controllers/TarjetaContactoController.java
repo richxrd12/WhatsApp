@@ -23,9 +23,12 @@ public class TarjetaContactoController {
     @FXML
     private Label nombreLabel;
 
+    @FXML
+    private ImageView onlineIcon;
+
     private int id;
 
-    public void setContacto(int id, String nombre, String estado, String fotoUrl) {
+    public void setContacto(int id, String nombre, String estado, String fotoUrl, boolean isOnline) {
         this.id = id;
         this.nombreLabel.setText(nombre);
         this.estadoLabel.setText(estado);
@@ -33,6 +36,7 @@ public class TarjetaContactoController {
         String imagePath = "C:\\Users\\richa\\Desktop\\Clases\\DAD\\WhatsApp\\src\\main\\resources\\org\\example\\whatsapp\\img\\hasbulla.jpg";
         this.imageView.setImage(new Image("file:///" + imagePath.replace("\\", "/")));
 
+        onlineIcon.setVisible(isOnline);
     }
 
     @FXML

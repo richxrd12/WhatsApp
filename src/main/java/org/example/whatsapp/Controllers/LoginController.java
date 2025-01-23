@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -31,7 +32,7 @@ public class LoginController {
     private Label errorLabel;
 
     @FXML
-    private TextField correoTextField;
+    private TextField usuarioTextField;
 
     @FXML
     private PasswordField passField;
@@ -40,10 +41,10 @@ public class LoginController {
 
     @FXML
     public void onClickLogin(ActionEvent event) {
-        String correo = correoTextField.getText();
+        String usuario = usuarioTextField.getText();
         String password = passField.getText();
 
-        boolean loginSucces = loginServidor(correo, password);
+        boolean loginSucces = loginServidor(usuario, password);
 
         if (loginSucces){
             goContactos(event);
@@ -110,7 +111,7 @@ public class LoginController {
         }
     }
 
-    public boolean loginServidor(String correo, String pass){
+    public boolean loginServidor(String usuario, String pass){
         try {
             // Conectar solo si no está conectado
             ObjectInputStream entrada = Conexion.getEntrada();
@@ -119,7 +120,7 @@ public class LoginController {
             // Crear datos para login
             Map<String, String> datosLogin = new HashMap<>();
             datosLogin.put("peticion", "login");
-            datosLogin.put("correo", correo);
+            datosLogin.put("usuario", usuario);
             datosLogin.put("password", pass);
 
             salida.writeObject(datosLogin);

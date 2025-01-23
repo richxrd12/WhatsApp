@@ -15,6 +15,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -132,6 +133,28 @@ public class ChatController {
         mensajes.add(mensaje);
 
         chatTextField.clear();
+    }
+
+    //Mismo método que arriba pero escucha el enter
+    @FXML
+    void onKeyEnviar(KeyEvent event) throws IOException {
+        switch (event.getCode()){
+            case ENTER:
+                String mensajeTexto = chatTextField.getText();
+                if (mensajeTexto.isEmpty()) return;
+
+                mandarMensaje(mensajeTexto);
+
+                LocalDateTime now = LocalDateTime.now();
+                String fecha = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+                Mensaje mensaje = new Mensaje(0, Variables.getIdCliente(), Variables.getIdContacto(), mensajeTexto, fecha);
+
+                ObservableList<Mensaje> mensajes = chatListView.getItems();
+                mensajes.add(mensaje);
+
+                chatTextField.clear();
+        }
     }
 
     @FXML

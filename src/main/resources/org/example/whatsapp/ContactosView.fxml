@@ -11,12 +11,12 @@
    <children>
       <AnchorPane prefHeight="60.0" prefWidth="500.0" style="-fx-background-color: a87bc7;">
          <children>
-            <Label layoutX="77.0" layoutY="7.0" text="CONTACTOS" textFill="WHITE">
+            <Label layoutX="77.0" layoutY="7.0" style="-fx-text-fill: black;" text="Contactos" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="contactosLabel" layoutX="77.0" layoutY="33.0" text="Nº contactos" textFill="WHITE" />
+            <Label fx:id="contactosLabel" layoutX="77.0" layoutY="33.0" prefHeight="17.0" prefWidth="107.0" style="-fx-text-fill: black;" text="Nº de contactos" textFill="WHITE" />
             <ImageView fitHeight="50.0" fitWidth="50.0" layoutY="5.0" onMouseClicked="#onClickGoLogin" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/flecha-salir.png" />
