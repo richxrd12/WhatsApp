@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -12,21 +13,21 @@
    <children>
       <AnchorPane layoutX="500.0" prefHeight="750.0" prefWidth="500.0" style="-fx-background-color: #f1d7ff;">
          <children>
-            <Label layoutX="55.0" layoutY="279.0" text="Usuario">
+            <Label layoutX="55.0" layoutY="279.0" style="-fx-text-fill: indigo;" text="Usuario">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="55.0" layoutY="401.0" text="Contraseña">
+            <Label layoutX="56.0" layoutY="410.0" style="-fx-text-fill: indigo;" text="Contraseña">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </Label>
             <Button layoutX="195.0" layoutY="581.0" mnemonicParsing="false" onAction="#onClickLogin" prefHeight="38.0" prefWidth="88.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: indigo;" text="Iniciar sesión" />
-            <TextField fx:id="correoTextField" layoutX="55.0" layoutY="317.0" prefHeight="25.0" prefWidth="367.0" />
+            <TextField fx:id="usuarioTextField" layoutX="55.0" layoutY="317.0" prefHeight="25.0" prefWidth="367.0" />
             <Label fx:id="errorLabel" layoutX="71.0" layoutY="513.0" prefHeight="17.0" prefWidth="335.0" style="-fx-text-fill: #f1d7ff; -fx-alignment: center;" text="Error" />
-            <Label fx:id="registrarseLabel" layoutX="100.0" layoutY="656.0" onMouseClicked="#onClickRegister" prefHeight="17.0" prefWidth="293.0" style="-fx-alignment: center;" text="¿No tiene cuenta? Cree una." />
-            <Label layoutX="96.0" layoutY="149.0" prefHeight="47.0" prefWidth="270.0" style="-fx-alignment: center; -fx-text-fill: indigo;" text="WhatsApp">
+            <Label fx:id="registrarseLabel" layoutX="100.0" layoutY="656.0" onMouseClicked="#onClickRegister" prefHeight="17.0" prefWidth="293.0" style="-fx-alignment: center; -fx-text-fill: indigo;" text="¿No tiene cuenta? Cree una." />
+            <Label layoutX="96.0" layoutY="149.0" prefHeight="47.0" prefWidth="270.0" style="-fx-alignment: center; -fx-text-fill: indigo;" text="Inicio de sesión">
                <font>
                   <Font size="33.0" />
                </font>
@@ -34,6 +35,14 @@
             <PasswordField fx:id="passField" layoutX="55.0" layoutY="448.0" prefHeight="25.0" prefWidth="367.0" />
          </children>
       </AnchorPane>
-      <ImageView fx:id="imagenLogo" fitHeight="300.0" fitWidth="300.0" layoutX="100.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imagenLogo" fitHeight="250.0" fitWidth="250.0" layoutX="125.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/whatsapp.png" />
+         </image></ImageView>
+      <Label layoutX="111.0" layoutY="534.0" prefHeight="47.0" prefWidth="270.0" style="-fx-alignment: center; -fx-text-fill: Black;" text="WhatsApp">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
