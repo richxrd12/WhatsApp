@@ -140,6 +140,8 @@ public class ChatController {
         ObservableList<Mensaje> mensajes = chatListView.getItems();
         mensajes.add(mensaje);
 
+        Platform.runLater(() -> chatListView.scrollTo(chatListView.getItems().size() - 1));
+
         chatTextField.clear();
     }
 
@@ -161,6 +163,8 @@ public class ChatController {
                 ObservableList<Mensaje> mensajes = chatListView.getItems();
                 mensajes.add(mensaje);
 
+                Platform.runLater(() -> chatListView.scrollTo(chatListView.getItems().size() - 1));
+
                 chatTextField.clear();
         }
     }
@@ -170,21 +174,8 @@ public class ChatController {
         final String FXML = "/org/example/whatsapp/ContactosView.fxml";
 
         try {
-            FXMLLoader loader;
-            Parent root;
-
-            if (Variables.getContactosLoader() == null) {
-                loader = new FXMLLoader(getClass().getResource(FXML));
-                root = loader.load();
-                Variables.setContactosLoader(loader);
-            } else {
-                loader = Variables.getContactosLoader();
-                root = loader.getRoot();
-
-                if (root.getScene() != null) {
-                    root.getScene().setRoot(new StackPane());
-                }
-            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXML));
+            Parent root = loader.load();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
