@@ -2,6 +2,7 @@ package org.example.whatsapp.Controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -55,6 +56,10 @@ public class ChatController {
     @FXML
     public void initialize(){
         try{
+            //Cerramos el hilo
+            if (listenMessage != null){
+                listenMessage.interrupt();
+            }
 
             if (contador < 1){
                 ObjectInputStream inputStream = Conexion.getEntradaEscucha();
@@ -111,6 +116,9 @@ public class ChatController {
                     }
                 }
             });
+
+            Platform.runLater(() -> chatListView.scrollTo(chatListView.getItems().size() - 1));
+
 
         }catch (Exception e){
             System.out.println(e);
