@@ -65,8 +65,6 @@ public class TarjetaContactoController {
         }
     }
 
-
-
     public int getId(){
         return id;
     }

@@ -52,7 +52,11 @@ public class ContactosController {
         contactosLabel.setText(contactosText);
 
         listView.setItems(contactos);
-        listView.setCellFactory(lv -> new ListCell<>() {
+
+        /**
+         * Para meter cada tarjeta de contacto en la ListView.
+         */
+        listView.setCellFactory(_ -> new ListCell<>() {
             @Override
             protected void updateItem(Usuario usuario, boolean empty) {
                 super.updateItem(usuario, empty);
@@ -73,8 +77,6 @@ public class ContactosController {
                         // Establecer la tarjeta como gráfico de la celda
                         setGraphic(root);
                     } catch (IOException e) {
-                        e.printStackTrace();
-                        setText("Error cargando contacto");
                         setGraphic(null);
                     }
                 }
@@ -82,29 +84,9 @@ public class ContactosController {
         });
     }
 
-    @FXML
-    void onClickGoLogin(MouseEvent event) {
-        final String FXML = "/org/example/whatsapp/LoginView.fxml";
-
-        try {
-            FXMLLoader login = new FXMLLoader(getClass().getResource(FXML));
-            Parent root = login.load();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            Scene scene =  new Scene(root);
-            stage.setScene(scene);
-
-            stage.setHeight(750);
-            stage.setWidth(1000);
-
-            stage.centerOnScreen();
-            stage.show();
-
-        }catch (Exception e){
-            System.out.println(e);
-        }
-    }
-
+    /**
+     * Metodo para pedir lista de Usuarios al servidor para cargarlos en la pantalla
+     */
     public ObservableList<Usuario> pedirLista(){
         try {
             ObjectInputStream entrada = Conexion.getEntrada();
@@ -133,6 +115,30 @@ public class ContactosController {
             System.out.println(e);
             return null;
         }
-
     }
+
+
+    @FXML
+    void onClickGoLogin(MouseEvent event) {
+        final String FXML = "/org/example/whatsapp/LoginView.fxml";
+
+        try {
+            FXMLLoader login = new FXMLLoader(getClass().getResource(FXML));
+            Parent root = login.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            Scene scene =  new Scene(root);
+            stage.setScene(scene);
+
+            stage.setHeight(750);
+            stage.setWidth(1000);
+
+            stage.centerOnScreen();
+            stage.show();
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
 }

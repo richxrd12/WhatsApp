@@ -39,6 +39,10 @@ public class LoginController {
 
     private int idCliente;
 
+    /**
+     * Si hace click en login, cogerá los parámetros de los textField de usuario y contraseña y los mandará por
+     * loginServidor()
+     */
     @FXML
     public void onClickLogin(ActionEvent event) {
         String usuario = usuarioTextField.getText();
@@ -53,51 +57,12 @@ public class LoginController {
         }
     }
 
-    @FXML
-    public void onClickRegister(MouseEvent event) {
-        final String FXML = "/org/example/whatsapp/RegisterView.fxml";
-
-        try {
-            FXMLLoader ventanaPrincipal = new FXMLLoader(getClass().getResource(FXML));
-            Parent root = ventanaPrincipal.load();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            Scene scene =  new Scene(root);
-            stage.setScene(scene);
-
-            stage.setHeight(750);
-            stage.setWidth(1000);
-
-            stage.centerOnScreen();
-            stage.show();
-
-        }catch (Exception e){
-            System.out.println(e);
-        }
-    }
-
-    void goContactos(ActionEvent event) {
-        final String FXML = "/org/example/whatsapp/ContactosView.fxml";
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXML));
-            Parent root = loader.load();
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-
-            ContactosController controller = loader.getController();
-            controller.setStage(stage);
-
-            stage.setHeight(855);
-            stage.setWidth(500);
-            stage.centerOnScreen();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+    /**
+     * Método para hacer login.
+     * Hace una petición al servidor con el código login, el usuario y la contraseña (ambas pasadas por parámetro) y
+     * depende del id que reciba, hace login o no. Si es diferente a 0 el resultado, hará login porque significa que ha
+     * encontrado un usuario. De ser correcto, se guardará en la clase estática Variables el idCliente.
+     */
     public boolean loginServidor(String usuario, String pass){
         try {
             // Conectar solo si no está conectado
@@ -138,4 +103,53 @@ public class LoginController {
         errorLabel.setStyle("-fx-text-fill: red");
     }
 
+    @FXML
+    public void onClickRegister(MouseEvent event) {
+        final String FXML = "/org/example/whatsapp/RegisterView.fxml";
+
+        try {
+            FXMLLoader ventanaPrincipal = new FXMLLoader(getClass().getResource(FXML));
+            Parent root = ventanaPrincipal.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            Scene scene =  new Scene(root);
+            stage.setScene(scene);
+
+            stage.setHeight(750);
+            stage.setWidth(1000);
+
+            stage.setTitle("Register");
+
+            stage.centerOnScreen();
+            stage.show();
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    void goContactos(ActionEvent event) {
+        final String FXML = "/org/example/whatsapp/ContactosView.fxml";
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXML));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+
+            ContactosController controller = loader.getController();
+            controller.setStage(stage);
+
+            stage.setHeight(855);
+            stage.setWidth(500);
+
+            stage.setTitle("Contactos");
+
+            stage.centerOnScreen();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

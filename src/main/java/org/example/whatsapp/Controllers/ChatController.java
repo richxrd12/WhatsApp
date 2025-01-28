@@ -56,11 +56,12 @@ public class ChatController {
     @FXML
     public void initialize(){
         try{
-            //Cerramos el hilo
+            //Cerramos el hilo por si hubiera uno
             if (listenMessage != null){
                 listenMessage.interrupt();
             }
 
+            //Recibimos el mensaje de conexión una vez por cliente (es necesario para que no se pare el hilo)
             if (contador < 1){
                 ObjectInputStream inputStream = Conexion.getEntradaEscucha();
                 String codigo = (String) inputStream.readObject();
@@ -191,6 +192,8 @@ public class ChatController {
                 stage.setHeight(855);
                 stage.setWidth(500);
                 stage.centerOnScreen();
+
+                stage.setTitle("Contactos");
             }
 
         } catch (Exception e) {

@@ -21,16 +21,22 @@ public class App extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1000, 750);
 
         try{
+            /**
+             * Se establece la conexión con el servidor, se obtiene su InputStream (para recibir datos), recibe el
+             * código que manda el servidor cada vez que se establece una conexión, lo muestra por consola y
+             * se establece una conexión secundaria que estará en escucha.
+             */
             Conexion.establecerConexion(HOST, PORT);
             ObjectInputStream inputStream = Conexion.getEntrada();
+
             String codigo = (String) inputStream.readObject();
             System.out.println(codigo);
+
             Conexion.establecerConexionEscucha(HOST, PORT_ESCUCHA);
 
         }catch (Exception e){
             System.out.println("Hubo un error estableciendo la conexion");
         }
-
 
         stage.setTitle("Login");
         stage.setScene(scene);
